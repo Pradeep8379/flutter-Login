@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_app/auth_controller.dart';
 
 
 class SignUpPage extends StatelessWidget {
@@ -8,6 +9,10 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
@@ -47,6 +52,7 @@ class SignUpPage extends StatelessWidget {
                 height: 10,
               ),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30))),
@@ -60,6 +66,8 @@ class SignUpPage extends StatelessWidget {
                 height: 10,
               ),
               TextField(
+                controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30))),
@@ -73,7 +81,9 @@ class SignUpPage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(40),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthController.instance.register(emailController.text.trim(),passwordController.text.trim());
+            },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
             child: Text('Sign Up',
                 style: TextStyle(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:login_app/login_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -15,7 +17,9 @@ class WelcomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
 
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAll(()=>LoginPage());
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black
                   ),
