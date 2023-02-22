@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/login_page.dart';
+import 'package:login_app/auth_controller.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -18,7 +19,8 @@ class WelcomePage extends StatelessWidget {
 
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.offAll(()=>LoginPage());
+                    AuthController.instance.logOut();
+
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black

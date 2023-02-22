@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:login_app/signup_page.dart';
 import 'package:login_app/welcome_page.dart';
 import 'package:get/get.dart';
+import 'package:login_app/auth_controller.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,6 +17,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
@@ -60,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 10,
               ),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30))),
@@ -79,6 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 10,
               ),
               TextField(
+                controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30))),
@@ -93,7 +102,9 @@ class _LoginPageState extends State<LoginPage> {
          borderRadius: BorderRadius.circular(40),
           
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthController.instance.signIn(emailController.text.trim(),passwordController.text.trim());
+            },
            style: ElevatedButton.styleFrom(
              backgroundColor: Colors.black
            ),
